@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-
+use App\Models\User;
 class UserSeeder extends Seeder
 {
     /**
@@ -16,11 +16,12 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'madhura1',
-            'email' => 'madhura1@gmail.com',
-            'password' => Hash::make('admin123'),
-            'is_admin'=>1,
-        ]);
+        DB::table('users')->truncate();
+    	$admin = new User();
+    	$admin->name = 'madhura1';
+    	$admin->email = 'madhura1@gmail.com';
+        $admin->password = bcrypt('admin123');
+        $admin->is_admin=1;
+        $admin->save();
     }
 }
