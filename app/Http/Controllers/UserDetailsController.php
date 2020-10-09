@@ -33,7 +33,7 @@ class UserDetailsController extends Controller
             ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
             ->groupBy('tests.id')
             ->paginate(25);
-              $users->appends(['q' => $search]);
+            $users->appends(['q' => $search]);
           }
           else{
             $users = User::select(DB::raw('name,SUM(score) as score'))
@@ -42,6 +42,7 @@ class UserDetailsController extends Controller
             ->where('name','like', '%' .$search . '%')
             ->groupBy('tests.id')
             ->paginate(25);
+
           }
           return view('user',[
             'userlist' => $users,
