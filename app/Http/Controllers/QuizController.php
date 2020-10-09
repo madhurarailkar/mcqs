@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\Controller;
 use App\Models\Quiz;
 use App\Models\Test;
+use Illuminate\Support\Facades\DB;
+
 class QuizController extends Controller
 {
     //
@@ -59,6 +61,8 @@ class QuizController extends Controller
             }
             $i++;
         }    
-        return view('Quiz.success');
+        $score=DB::table("quizzes")->where('test_id','=',$test->id)->get()->sum("score");
+
+        return view('Quiz.success', ['score' => $score]);       
     }
 }

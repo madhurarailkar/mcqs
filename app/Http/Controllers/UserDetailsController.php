@@ -19,7 +19,7 @@ class UserDetailsController extends Controller
             ->join('tests', 'users.id', '=', 'tests.user_id')
             ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
             ->groupBy('tests.id')
-            ->paginate(10);
+            ->paginate(5);
             $users->appends(['q' => $search]);
           }
           else{
@@ -28,7 +28,7 @@ class UserDetailsController extends Controller
             ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
             ->where('name','like', '%' .$search . '%')
             ->groupBy('tests.id')
-            ->paginate(10);
+            ->paginate(5);
 
           }
           return view('user',[
@@ -47,7 +47,7 @@ class UserDetailsController extends Controller
                     ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
                     ->where('name','like', '%' .$search . '%')
                     ->groupBy('tests.id')
-                    ->paginate(10);
+                    ->paginate(5);
                     $users->appends(['q' => $search]);
 
         return view('user',[
@@ -62,7 +62,7 @@ class UserDetailsController extends Controller
             ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
             ->groupBy('tests.id')
             ->orderBy(DB::raw('SUM(score)'), $type)
-            ->paginate(10);
+            ->paginate(5);
             return view('user',[
               'userlist' => $users,
             ]);
