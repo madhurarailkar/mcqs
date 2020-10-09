@@ -12,7 +12,7 @@
 
         <form method="POST" action="{{ route('quizsubmit') }}">
             @csrf
-            @php $i=1; $j=1; @endphp
+            @php $i=0; $j=1; @endphp
             <input type="hidden" name="test" value="{{ serialize($hotel) }}">
             @foreach($hotel as $key=>$value)
             <br>

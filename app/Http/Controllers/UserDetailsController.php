@@ -13,26 +13,13 @@ class UserDetailsController extends Controller
 {
     public function index(Request $request)
     {
-
-        // $data = User::select(DB::raw('name,SUM(score) as score'))
-        //             ->join('tests', 'users.id', '=', 'tests.user_id')
-        //             ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
-        //             ->groupBy('tests.id')
-        //             ->paginate(1);
-        // return view('user',[
-        //     'userlist' => $data,
-        //   ]);
-
-          /////////////////////////
-
-
-          $search =  $request->input('q');
+        $search =  $request->input('q');
           if($search!=""){
             $users = User::select(DB::raw('name,SUM(score) as score'))
             ->join('tests', 'users.id', '=', 'tests.user_id')
             ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
             ->groupBy('tests.id')
-            ->paginate(25);
+            ->paginate(10);
             $users->appends(['q' => $search]);
           }
           else{
@@ -41,7 +28,7 @@ class UserDetailsController extends Controller
             ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
             ->where('name','like', '%' .$search . '%')
             ->groupBy('tests.id')
-            ->paginate(25);
+            ->paginate(10);
 
           }
           return view('user',[
@@ -60,7 +47,7 @@ class UserDetailsController extends Controller
                     ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
                     ->where('name','like', '%' .$search . '%')
                     ->groupBy('tests.id')
-                    ->paginate(25);
+                    ->paginate(10);
                     $users->appends(['q' => $search]);
 
         return view('user',[
@@ -75,7 +62,7 @@ class UserDetailsController extends Controller
             ->join('quizzes', 'tests.id', '=', 'quizzes.test_id')
             ->groupBy('tests.id')
             ->orderBy(DB::raw('SUM(score)'), $type)
-            ->paginate(25);
+            ->paginate(10);
             return view('user',[
               'userlist' => $users,
             ]);

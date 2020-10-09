@@ -58,8 +58,7 @@ class QuizController extends Controller
                 }
             }
             $i++;
-        }      
+        }    
         return view('Quiz.success');
-        // print_r($result);
     }
 }
