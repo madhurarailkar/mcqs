@@ -18,8 +18,8 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->truncate();
     	$admin = new User();
-    	$admin->name = 'madhura1';
-    	$admin->email = 'madhura1@gmail.com';
+    	$admin->name = 'admin';
+    	$admin->email = 'admin@gmail.com';
         $admin->password = bcrypt('admin123');
         $admin->is_admin=1;
         $admin->save();
