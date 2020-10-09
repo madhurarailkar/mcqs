@@ -31,4 +31,5 @@ Route::get('/quiz','QuizController@getQuiz')->name('quiz');
 Route::post('/quizsubmit','QuizController@store')->name('quizsubmit');
 Route::get('/user', 'UserDetailsController@index')->name('user');
 Route::get('/search', 'UserDetailsController@search')->name('search');
+Route::get('sort/{type}', 'UserDetailsController@sort')->name('sort');
 
