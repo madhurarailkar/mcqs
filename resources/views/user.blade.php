@@ -46,14 +46,22 @@ tr:nth-child(even) {
                     <input type="submit" value="Search"  class="btn success"/>
              </div>
             <table>
-                <tr>
+                <tr  style="font-size:23px;">
                     <th>Name</th>
                     <th>Score</th>
                 </tr>
   @foreach($userlist as $value)
   <tr>
-    <td>{{$value['name']}}</td>
-    <td>{{$value['score']}}</td>
+  @if($value['score']>=5)
+    <td style="color:green"><b>{{$value['name']}}</b></td>
+    @else
+    <td style="color:red"><b>{{$value['name']}}</b></td>
+    @endif
+    @if($value['score']>=5)
+    <td style="color:green"><b>{{$value['score']}}</b></td>
+    @else
+    <td style="color:red"><b>{{$value['score']}}</b></td>
+    @endif
   </tr>
   @endforeach
 </table>
