@@ -25,7 +25,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 1] composer install
 
-2] run php artian migrate
+2] run php artisan migrate
 
 3] php artisan db:seed --class=UserSeeder
 
